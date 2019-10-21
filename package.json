@@ -2,9 +2,16 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/polyfill": "^7.6.0",
+    "@babel/runtime": "^7.6.3",
     "babel-preset-airbnb": "^4.1.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib"
+  },
+  "dependencies": {
+    "request": "^2.88.0"
   }
 }
