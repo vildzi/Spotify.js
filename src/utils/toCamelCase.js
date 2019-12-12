@@ -1,6 +1,5 @@
 export default (object) => {
   if (typeof object !== 'object' || object.length) return object;
-  if (!this.useCamelCaseParser) return object;
 
   const newObject = {};
 

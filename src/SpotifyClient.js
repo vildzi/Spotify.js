@@ -33,6 +33,8 @@ export default class SpotifyClient extends EventEmitter {
 
     this.toCamelCase = toCamelCase;
 
+    if (!this.useCamelCaseParser) this.toCamelCase = (object) => object;
+
     this.request = promisify(request);
 
     this.headers = {
