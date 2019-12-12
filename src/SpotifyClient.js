@@ -3,6 +3,17 @@ import { EventEmitter } from 'events';
 import { promisify } from 'util';
 
 export default class SpotifyClient extends EventEmitter {
+  /**
+   * Creates a new Spotify Client
+   * @class
+   * @param {object} options
+   * @param {string} options.clientId Spotify Client Id
+   * @param {string} options.clientSecret Spotify Client Secret
+   * @param {string} [options.refreshToken=null] Spotify User Refresh Token
+   * @param {string} [options.redirectUri=null] Spotify Redirect URI
+   * @param {string} [options.listenForPlaybackChanges=false] Option that enables checking for
+   *  song playback changes, defaults to false
+   */
   constructor(options) {
     super();
 
@@ -200,6 +211,9 @@ export default class SpotifyClient extends EventEmitter {
     return accessToken;
   }
 
+  /**
+   * Get user information
+   */
   async getUserData() {
     await this.refreshAccessToken();
 
@@ -217,6 +231,9 @@ export default class SpotifyClient extends EventEmitter {
     return parsed;
   }
 
+  /**
+   * Get a users current track
+   */
   async getCurrentTrack() {
     await this.refreshAccessToken();
 
@@ -232,6 +249,9 @@ export default class SpotifyClient extends EventEmitter {
     return parsed || null;
   }
 
+  /**
+   * Get a users recently played tracks
+   */
   async getRecentlyPlayedTracks(url = null) {
     await this.refreshAccessToken();
 
