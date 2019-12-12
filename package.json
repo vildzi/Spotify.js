@@ -1,5 +1,5 @@
 {
-  "name": "Spotify.js",
+  "name": "@vilp1l/spotify.js",
   "version": "1.0.0",
   "main": "lib/SpotifyClient.js",
   "license": "MIT",
