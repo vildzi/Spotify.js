@@ -1,4 +1,12 @@
 {
+  "name": "Spotify.js",
+  "version": "1.0.0",
+  "main": "lib/SpotifyClient.js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vilP1l/Spotify.js/issues"
+  },
+  "homepage": "https://github.com/vilP1l/Spotify.js",
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/polyfill": "^7.6.0",
