@@ -2,6 +2,8 @@ import request from 'request';
 import { EventEmitter } from 'events';
 import { promisify } from 'util';
 
+import toCamelCase from './utils/toCamelCase';
+
 export default class SpotifyClient extends EventEmitter {
   /**
    * Creates a new Spotify Client
@@ -29,6 +31,8 @@ export default class SpotifyClient extends EventEmitter {
     this.lastTokenRefreshTime = 0;
     this.useCamelCaseParser = true;
 
+    this.toCamelCase = toCamelCase;
+
     this.request = promisify(request);
 
     this.headers = {
@@ -45,35 +49,6 @@ export default class SpotifyClient extends EventEmitter {
     this.lastTrack = null;
 
     if (this.listenForPlaybackChanges) this.startPlaybackStateChangeListener();
-  }
-
-  /**
-   * @param {object} object Object to convert properties to camel case.
-   */
-  toCamelCase(object) {
-    if (typeof object !== 'object' || object.length) return object;
-    if (!this.useCamelCaseParser) return object;
-
-    const newObject = {};
-
-    Object.keys(object).forEach((k) => {
-      const split = k.split('_');
-      const newName = split.length >= 2 ? `${split[0]}${split[1][0].toUpperCase()}${split[1].substring(1, split[1].length)}` : k;
-
-      if (typeof object[k] === 'object' && object[k] && !object[k].length) {
-        newObject[newName] = this.toCamelCase(object[k]);
-      } else if (typeof object[k] === 'object' && object[k] && object[k].length) {
-        newObject[newName] = object[k].map((i) => {
-          if (typeof i === 'object') return this.toCamelCase(i);
-
-          return i;
-        });
-      } else {
-        newObject[newName] = object[k];
-      }
-    });
-
-    return newObject;
   }
 
   /**
