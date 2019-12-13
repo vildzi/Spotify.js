@@ -304,34 +304,34 @@ export default class SpotifyClient extends EventEmitter {
    * @param {string} id ID of item
    */
   async getTrackWithId(id) {
-    await this.getItemWithId(id, 'track');
+    return this.getItemWithId(id, 'track');
   }
 
   /**
    * @param {string} id ID of item
    */
   async getArtistWithId(id) {
-    await this.getItemWithId(id, 'artist');
+    return this.getItemWithId(id, 'artist');
   }
 
   /**
    * @param {string} id ID of item
    */
   async getAlbumWithId(id) {
-    await this.getItemWithId(id, 'album');
+    return this.getItemWithId(id, 'album');
   }
 
   /**
    * @param {string} id ID of item
    */
   async getPlaylistWithId(id) {
-    await this.getItemWithId(id, 'playlist');
+    return this.getItemWithId(id, 'playlist');
   }
 
   /**
    * @param {string} item Item to get, accepts Spotify URI, open.spotify URI,
    * api.spotify URI, item name, item ID
-   * @param {*} type Type of item ['track', 'artist', 'album', 'playlist']
+   * @param {string} type Type of item ['track', 'artist', 'album', 'playlist']
    */
   async getItem(item, type) {
     if (item.startsWith(`spotify:${type}:`)) {
@@ -365,7 +365,7 @@ export default class SpotifyClient extends EventEmitter {
   }
 
   async getTrack(track) {
-    await this.getItem(track, 'track');
+    return this.getItem(track, 'track');
   }
 
   async getTrackAudioAnalysis(track) {
@@ -388,15 +388,15 @@ export default class SpotifyClient extends EventEmitter {
   }
 
   async getArtist(artist) {
-    await this.getItem(artist, 'artist');
+    return this.getItem(artist, 'artist');
   }
 
   async getAlbum(album) {
-    await this.getItem(album, 'album');
+    return this.getItem(album, 'album');
   }
 
   async getPlaylist(playlist) {
-    await this.getItem(playlist, 'playlist');
+    return this.getItem(playlist, 'playlist');
   }
 
   async createPlaylist({
